@@ -10,8 +10,9 @@ function task() {
 
   let server = new WebpackDevServer(compiler, {
     publicPath: webpackDevServerConfig.output.publicPath,
-    stats: statsConfig
-    // hot: true
+    stats: statsConfig,
+    historyApiFallback: true,
+    hot: mainConfig.hot
   });
 
   server.listen(mainConfig.serverPort);

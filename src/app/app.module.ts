@@ -1,10 +1,9 @@
 import * as angular from 'angular';
-import { routes } from './app.route';
+import { AppController } from './app.controller';
 
-angular.module('app', [
+export const appModule = angular.module('appModule', [
   'ui.router'
-]).config(routes);
-
-angular.bootstrap(document.getElementById('app'), [ 'app' ]);
-
-
+]).component('app', {
+  controller: AppController,
+  template: require('./app.html')
+});

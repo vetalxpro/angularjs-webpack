@@ -1,62 +1,55 @@
-import { root } from '../lib/root';
 import { join } from 'path';
 
-const configFnc = () => {
-  const rootDir = root();
-  const src = root('src');
-  const assets = root('src', 'assets');
-  const components = root('src', 'components');
-  const configRoot = root('config');
-  const srcRelative = '/';
-  const app = root('src', 'app');
-  const docs = root('docs');
-  const reports = root('reports');
+function configFnc() {
+  const env = process.env.NODE_ENV || 'development';
+  const rootDir = process.cwd();
+  const srcDir = join(rootDir, 'src');
+  const appDir = join(srcDir, 'app');
+  const docsDir = join(rootDir, 'docs');
+  const distDir = join(rootDir, 'dist');
+  const reportsDir = join(rootDir, 'reports');
+  const mainEntry = join(srcDir, 'main.ts');
+  const polyfillsEntry = join(srcDir, 'polyfills.ts');
+  const html = join(srcDir, 'index.html');
   const exclude = [ /node_modules/, /\.spec.ts$/ ];
   const distFileName = '[name].bundle.js';
   const assetsPathPattern = '[name].[ext]';
-  const entry = join(src, 'main.ts');
-  const dist = root('dist');
-  const vendor = [
-    join(src, 'vendor.ts'),
-  ];
-  const env = process.env.NODE_ENV || 'development';
+  const entryPoints = [ 'polyfills', 'vendor', 'main' ];
+  const extensions = [ '.ts', '.tsx', '.js', '.json', '.sass', '.scss', '.css' ];
+  const hot = true;
 
-  const extensions = [ '.ts', '.tsx', '.js', '.scss', '.json', 'css' ];
-
-
+  const assetsDir = {
+    srcPath: join(srcDir, 'assets'),
+    distPath: join(distDir, 'assets')
+  };
+  const favicon = join(srcDir, 'favicon.ico');
   const serveFilesPath = 'assets';
   const serverPort = 3000;
-  const cssPath = '/static/сss/';
-  const fontsPath = '/static/fonts';
-
-  const htmls = [
-    'index.html',
-  ];
+  const publicPath = '';
 
   return {
-    rootDir,
-    src,
     env,
-    app,
-    dist,
-    docs,
-    htmls,
-    entry,
-    vendor,
-    assets,
-    reports,
+    rootDir,
+    srcDir,
+    appDir,
+    assetsDir,
+    mainEntry,
+    polyfillsEntry,
+    docsDir,
+    reportsDir,
     exclude,
-    cssPath,
-    fontsPath,
-    configRoot,
-    components,
-    serverPort,
-    extensions,
-    srcRelative,
+    distDir,
     distFileName,
-    serveFilesPath,
     assetsPathPattern,
+    entryPoints,
+    extensions,
+    html,
+    favicon,
+    serveFilesPath,
+    serverPort,
+    hot,
+    publicPath
   }
-};
+}
 
 export const mainConfig = configFnc();

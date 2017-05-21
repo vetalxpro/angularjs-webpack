@@ -10,7 +10,7 @@ export const statsConfig: Options.Stats = {
   // Add children information
   children: true,
   // Add chunk information (setting this to `false` allows for a less verbose output)
-  chunks: true,
+  chunks: false,
   // Add built modules information to chunk information
   chunkModules: true,
   // Add the origins of chunks and chunk merging info
@@ -26,7 +26,7 @@ export const statsConfig: Options.Stats = {
   // Add the hash of the compilation
   hash: true,
   // Add built modules information
-  modules: true,
+  modules: false,
   // Sort the modules by a field
   modulesSort: "field",
   // Add public path information

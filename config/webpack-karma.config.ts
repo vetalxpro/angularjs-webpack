@@ -1,13 +1,14 @@
-import { loaders } from './webpack-loaders.config';
+// import { loaders } from './webpack-loaders.config';
 import { webpackConfig } from './webpack.config';
 
 const karmaWebpackConf = () => {
-  let webpackConfigObjeect: any = webpackConfig(true);
+  let webpackConfigObject: any = webpackConfig(true);
 
-  webpackConfigObjeect.module.rules[ 0 ].use.unshift({
+  webpackConfigObject.module.rules[ 0 ].use.unshift({
     loader: 'istanbul-instrumenter-loader',
   });
 
-  return webpackConfigObjeect;
+  return webpackConfigObject;
 };
+
 export const karmaWebpackConfig = karmaWebpackConf();

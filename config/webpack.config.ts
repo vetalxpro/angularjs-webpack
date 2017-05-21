@@ -6,8 +6,8 @@ import { plugins } from './webpack-plugins.config';
 export const webpackConfig = (karma: boolean = false): webpack.Configuration => {
   const preparedEntry = karma ? {} : {
     entry: {
-      app: mainConfig.entry,
-      vendor: mainConfig.vendor,
+      main: mainConfig.mainEntry,
+      polyfills: mainConfig.polyfillsEntry
     },
     devtool: false
   };
@@ -20,8 +20,8 @@ export const webpackConfig = (karma: boolean = false): webpack.Configuration => 
     },
     output: {
       filename: `${mainConfig.serveFilesPath}/js/${mainConfig.distFileName}`,
-      path: mainConfig.dist,
-      publicPath: '/',
+      path: mainConfig.distDir,
+      publicPath: mainConfig.publicPath,
     },
     resolve: {
       extensions: mainConfig.extensions,

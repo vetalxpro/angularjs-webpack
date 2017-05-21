@@ -1,52 +1,62 @@
 import * as webpack from 'webpack';
 import { mainConfig } from './main.config';
-import { join } from 'path';
 import { ProgressPlugin } from 'webpack';
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const webpackPluginsFnc = (karma: boolean = false): any => {
+const webpackPluginsFnc = (karma: boolean = false): { plugins: webpack.Plugin[] } => {
   const plugins = [
     new webpack.NoEmitOnErrorsPlugin(),
     new ProgressPlugin(),
     new webpack.SourceMapDevToolPlugin({
       filename: null, // if no value is provided the sourcemap is inlined
       test: /\.(ts|js)$/i, // process .js and .ts files only
-      exclude: [ /vendor/ ]
+      exclude: [ /node_modules/ ]
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
+      minChunks: (module) => module.resource && (/node_modules/).test(module.resource),
+      chunks: [
+        'main'
+      ]
     }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(mainConfig.env)
       }
     }),
-    /* new webpack.ProvidePlugin({
-     $: 'jquery',
-     jQuery: 'jquery',
-     }),*/
+    new webpack.ProvidePlugin({}),
     new ExtractTextPlugin({
-      filename: 'style.css',
-      // disable: mainConfig.env === 'development1'
+      filename: 'assets/styles/styles.css',
+      disable: mainConfig.env === 'development'
     }),
     new HtmlWebpackPlugin({
-      template: `${mainConfig.src}/index.html`,
+      template: mainConfig.html,
       inject: 'body',
-      minify: {}
+      chunksSortMode: (left, right) => {
+        let leftIndex = mainConfig.entryPoints.indexOf(left.names[ 0 ]);
+        let rightIndex = mainConfig.entryPoints.indexOf(right.names[ 0 ]);
+        return leftIndex - rightIndex;
+      }
     }),
-    new CopyWebpackPlugin([ {
-      from: join(mainConfig.app, 'assets'),
-      to: join(mainConfig.dist, mainConfig.serveFilesPath)
-    } ])
+    new CopyWebpackPlugin([
+      {
+        from: mainConfig.assetsDir.srcPath,
+        to: mainConfig.assetsDir.distPath
+      },
+      {
+        from: mainConfig.favicon,
+        to: mainConfig.distDir
+      },
+    ])
   ];
 
   if (!karma) {
     return { plugins };
   } else {
-    return {};
+    return { plugins: [] };
   }
 };
 

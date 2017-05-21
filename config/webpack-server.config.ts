@@ -1,16 +1,14 @@
 import * as webpack from 'webpack';
 import { webpackConfig } from './webpack.config';
-import { devServerConfig } from './webpack-dev-server.config';
 import { mainConfig } from './main.config';
 
 const webpackServerConfigFnc = (): webpack.Configuration => {
-  let newConfig = Object.assign(webpackConfig(), {
-    devServer: devServerConfig
-  });
-  newConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
-  newConfig.entry[ 'app' ] = [ 'webpack/hot/dev-server', `webpack-dev-server/client?http://localhost:${mainConfig.serverPort}/`, newConfig.entry[ 'app' ] ];
+  let devServerConfig = webpackConfig();
 
-  return newConfig;
+  devServerConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+  devServerConfig.entry[ 'main' ] = [ 'webpack/hot/dev-server', `webpack-dev-server/client?http://localhost:${mainConfig.serverPort}/`, devServerConfig.entry[ 'main' ] ];
+
+  return devServerConfig;
 };
 
 export const webpackDevServerConfig = webpackServerConfigFnc();

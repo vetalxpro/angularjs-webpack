@@ -1,23 +1,13 @@
-const styles = require('./app.scss');
-
 export class AppController {
-  static $inject = [ "$rootScope" ];
-  styles = styles;
+  public static $inject = [ '$rootScope' ];
+  public styles = require('./app.scss');
 
   constructor(private $rootScope: ng.IScope) {
-    this.connectToServer();
+    this.init();
   }
 
-  private connectToServer() {
-    console.log('connected');
+  private init() {
+    console.log(AppController.name);
   }
 
-  private findCoordinatesAndSaveToUser() {
-  }
-
-  private auth() {
-  }
-
-  private signOut() {
-  }
 }

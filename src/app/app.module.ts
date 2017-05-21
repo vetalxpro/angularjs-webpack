@@ -1,9 +1,13 @@
 import * as angular from 'angular';
-import { AppController } from './app.controller';
+
+import { AppComponent } from './app.component';
+import { appRoutes } from './app.routes';
+import { routesConfig, materialConfig } from './config';
 
 export const appModule = angular.module('appModule', [
-  'ui.router'
-]).component('app', {
-  controller: AppController,
-  template: require('./app.html')
-});
+  'ui.router',
+  'ngMaterial'
+]).component('app', AppComponent)
+  .config(appRoutes)
+  .config(routesConfig)
+  .config(materialConfig);

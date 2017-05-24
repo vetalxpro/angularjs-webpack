@@ -1,7 +1,7 @@
 import { Rule } from 'webpack';
 import { mainConfig } from './main.config';
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+import ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 export const loaders = (karma: boolean = false): Rule[] => {
 
@@ -12,12 +12,12 @@ export const loaders = (karma: boolean = false): Rule[] => {
     {
       loader: 'postcss-loader',
       options: {
-        plugins: function () {
+        plugins: () => {
           return [
             require('autoprefixer')({
               browsers: [ 'last 2 versions', 'ie 9' ]
             })
-          ]
+          ];
         },
         sourceMap: true
       }
@@ -107,6 +107,6 @@ export const loaders = (karma: boolean = false): Rule[] => {
       ],
       exclude: mainConfig.exclude
     }
-  ]
+  ];
 
 };

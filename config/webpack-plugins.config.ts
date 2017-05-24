@@ -1,10 +1,9 @@
 import * as webpack from 'webpack';
 import { mainConfig } from './main.config';
 import { ProgressPlugin } from 'webpack';
-
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import ExtractTextPlugin = require('extract-text-webpack-plugin');
+import CopyWebpackPlugin = require('copy-webpack-plugin');
+import HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const webpackPluginsFnc = (karma: boolean = false): { plugins: webpack.Plugin[] } => {
   const plugins = [
@@ -36,8 +35,8 @@ const webpackPluginsFnc = (karma: boolean = false): { plugins: webpack.Plugin[] 
       template: mainConfig.html,
       inject: 'body',
       chunksSortMode: (left, right) => {
-        let leftIndex = mainConfig.entryPoints.indexOf(left.names[ 0 ]);
-        let rightIndex = mainConfig.entryPoints.indexOf(right.names[ 0 ]);
+        const leftIndex = mainConfig.entryPoints.indexOf(left.names[ 0 ]);
+        const rightIndex = mainConfig.entryPoints.indexOf(right.names[ 0 ]);
         return leftIndex - rightIndex;
       }
     }),

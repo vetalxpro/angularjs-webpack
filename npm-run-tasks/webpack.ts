@@ -10,7 +10,7 @@ function task() {
       return console.error(err);
     }
     console.log(stats.toString(statsConfig));
-  })
+  });
 
 }
 

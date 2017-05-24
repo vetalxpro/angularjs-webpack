@@ -2,7 +2,7 @@
 import { webpackConfig } from './webpack.config';
 
 const karmaWebpackConf = () => {
-  let webpackConfigObject: any = webpackConfig(true);
+  const webpackConfigObject: any = webpackConfig(true);
 
   webpackConfigObject.module.rules[ 0 ].use.unshift({
     loader: 'istanbul-instrumenter-loader',

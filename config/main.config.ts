@@ -11,7 +11,7 @@ function configFnc() {
   const mainEntry = join(srcDir, 'main.ts');
   const polyfillsEntry = join(srcDir, 'polyfills.ts');
   const html = join(srcDir, 'index.html');
-  const exclude = [ /node_modules/, /\.spec.ts$/ ];
+  const exclude = [ /node_modules/ ];
   const distFileName = '[name].bundle.js';
   const assetsPathPattern = '[name].[ext]';
   const entryPoints = [ 'polyfills', 'vendor', 'main' ];
@@ -49,7 +49,7 @@ function configFnc() {
     serverPort,
     hot,
     publicPath
-  }
+  };
 }
 
 export const mainConfig = configFnc();

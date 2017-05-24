@@ -5,6 +5,19 @@
   "rules": {
     // Custom
     "no-empty": false,
+    "no-angle-bracket-type-assertion": false,
+    "typedef-whitespace": false,
+    "whitespace": false,
+    "prefer-const": true,
+    "jsdoc-format": false,
+    "no-consecutive-blank-lines": [
+      true,
+      2
+    ],
+    "object-literal-key-quotes": [
+      true,
+      "as-needed"
+    ],
     "trailing-comma": [
       false,
       {
@@ -13,7 +26,6 @@
       }
     ],
     "interface-name": [
-      false,
       "always-prefix"
     ],
     // General

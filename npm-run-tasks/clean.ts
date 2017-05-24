@@ -5,6 +5,5 @@ remove(mainConfig.distDir, (err) => {
   if (err) {
     throw err;
   }
-  console.log('Dist Directory has cleaned');
+  console.log('Dist Directory cleaned');
 });
-

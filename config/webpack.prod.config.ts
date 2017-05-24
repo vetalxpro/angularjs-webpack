@@ -2,7 +2,7 @@ import * as webpack from 'webpack';
 import { mainConfig } from './main.config';
 import { webpackConfig } from './webpack.config';
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+import CleanWebpackPlugin = require('clean-webpack-plugin');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const webpackProdConf = (): webpack.Configuration => {
@@ -32,7 +32,6 @@ const webpackProdConf = (): webpack.Configuration => {
   ];
 
   const preparedWebpackConfig: webpack.Configuration = webpackConfig();
-
   preparedWebpackConfig.plugins.unshift(...productionPlugins);
 
   return preparedWebpackConfig;

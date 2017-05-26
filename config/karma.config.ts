@@ -2,7 +2,7 @@
 
 import { karmaWebpackConfig } from './webpack-karma.config';
 
-module.exports = (config) => {
+module.exports = ( config ) => {
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '../',
@@ -11,13 +11,16 @@ module.exports = (config) => {
     frameworks: [ 'jasmine' ],
 
     plugins: [
-      'karma-jasmine', 'karma-coverage-istanbul-reporter',
-      'karma-chrome-launcher', 'karma-webpack',
+      'karma-jasmine',
+      'karma-mocha-reporter',
+      'karma-coverage-istanbul-reporter',
+      'karma-chrome-launcher',
+      'karma-webpack',
       'karma-sourcemap-loader'
     ],
     // list of files / patterns to load in the browser
     files: [
-      'src/test.ts',
+      'src/test.ts'
     ],
     mime: {
       'text/x-typescript': [ 'ts' ]
@@ -32,7 +35,8 @@ module.exports = (config) => {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: [ 'progress', 'coverage-istanbul' ],
+    reporters: [ 'mocha', 'coverage-istanbul' ],
+    mochaReporter: {},
     coverageIstanbulReporter: {
       reports: [ 'text-summary', 'html' ],
       fixWebpackSourcePaths: true,

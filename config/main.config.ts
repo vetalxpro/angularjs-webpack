@@ -3,15 +3,18 @@ import { join } from 'path';
 function configFnc() {
   const env = process.env.NODE_ENV || 'development';
   const rootDir = process.cwd();
+  const configDir = join(rootDir, 'config');
   const srcDir = join(rootDir, 'src');
   const appDir = join(srcDir, 'app');
   const docsDir = join(rootDir, 'docs');
   const distDir = join(rootDir, 'dist');
   const reportsDir = join(rootDir, 'reports');
-  const mainEntry = join(srcDir, 'main.ts');
-  const polyfillsEntry = join(srcDir, 'polyfills.ts');
+  // ===== Entries =====
+  const mainEntry = './main.ts';
+  const polyfillsEntry = './polyfills.ts';
+  // ==========
   const html = join(srcDir, 'index.html');
-  const exclude = [ /node_modules/ ];
+  const exclude = [ /node_modules/, /\.spec\.ts$/ ];
   const distFileName = '[name].bundle.js';
   const assetsPathPattern = '[name].[ext]';
   const entryPoints = [ 'polyfills', 'vendor', 'main' ];
@@ -30,6 +33,7 @@ function configFnc() {
   return {
     env,
     rootDir,
+    configDir,
     srcDir,
     appDir,
     assetsDir,

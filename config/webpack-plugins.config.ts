@@ -5,7 +5,7 @@ import ExtractTextPlugin = require('extract-text-webpack-plugin');
 import CopyWebpackPlugin = require('copy-webpack-plugin');
 import HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const webpackPluginsFnc = (karma: boolean = false): { plugins: webpack.Plugin[] } => {
+const webpackPluginsFnc = ( karma: boolean = false ): { plugins: webpack.Plugin[] } => {
   const plugins = [
     new webpack.NoEmitOnErrorsPlugin(),
     new ProgressPlugin(),
@@ -16,7 +16,7 @@ const webpackPluginsFnc = (karma: boolean = false): { plugins: webpack.Plugin[] 
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks: (module) => module.resource && (/node_modules/).test(module.resource),
+      minChunks: ( module ) => module.resource && (/node_modules/).test(module.resource),
       chunks: [
         'main'
       ]
@@ -34,7 +34,7 @@ const webpackPluginsFnc = (karma: boolean = false): { plugins: webpack.Plugin[] 
     new HtmlWebpackPlugin({
       template: mainConfig.html,
       inject: 'body',
-      chunksSortMode: (left, right) => {
+      chunksSortMode: ( left, right ) => {
         const leftIndex = mainConfig.entryPoints.indexOf(left.names[ 0 ]);
         const rightIndex = mainConfig.entryPoints.indexOf(right.names[ 0 ]);
         return leftIndex - rightIndex;
@@ -48,11 +48,11 @@ const webpackPluginsFnc = (karma: boolean = false): { plugins: webpack.Plugin[] 
       {
         from: mainConfig.favicon,
         to: mainConfig.distDir
-      },
+      }
     ])
   ];
 
-  if (!karma) {
+  if ( !karma ) {
     return { plugins };
   } else {
     return { plugins: [] };

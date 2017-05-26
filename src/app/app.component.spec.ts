@@ -1,14 +1,15 @@
 import { mock } from 'angular';
+import { appModule } from './app.module';
+import { AppComponent } from './app.component';
 
-describe('AppController', () => {
-  beforeEach(mock.module('appModule'));
+describe('AppComponent', () => {
+  beforeEach(mock.module(appModule.name));
 
-  // let componentController: ng.IComponentControllerService;
   let $ctrl;
 
-  beforeEach(mock.inject(($componentController: ng.IComponentControllerService, $rootScope: ng.IRootScopeService) => {
+  beforeEach(mock.inject(( $componentController, $rootScope ) => {
     const $scope = $rootScope.$new();
-    $ctrl = $componentController('app', { $scope });
+    $ctrl = $componentController(AppComponent.selector, { $scope });
   }));
 
   it('should be defined', () => {
@@ -16,15 +17,8 @@ describe('AppController', () => {
   });
 
   it('should containt toolbar title', () => {
-    expect($ctrl.toolbarTitle).toEqual('AngularJS(webpack + typescript)');
-  });
-
-  it('should containt value counter=0', () => {
-    expect($ctrl.counter).toEqual(0);
-  });
-  it('should increment counter', () => {
-    $ctrl.increment();
-    expect($ctrl.counter).toEqual(1);
+    const title = 'AngularJS(webpack + typescript)';
+    expect($ctrl.toolbarTitle).toEqual(title);
   });
 
 });

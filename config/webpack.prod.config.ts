@@ -16,7 +16,7 @@ const webpackProdConf = (): webpack.Configuration => {
     }),
     new webpack.LoaderOptionsPlugin({
       debug: false,
-      minimize: true,
+      minimize: true
     }),
     new webpack.optimize.UglifyJsPlugin({
       beautify: false,

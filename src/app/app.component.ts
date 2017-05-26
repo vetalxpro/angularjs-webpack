@@ -1,7 +1,13 @@
-import { AppController } from './app.controller';
+class AppController {
+  private static $inject = [ '$rootScope' ];
+  public toolbarTitle = 'AngularJS(webpack + typescript)';
 
-export const AppComponent: ng.IComponentOptions = {
+  constructor( private $rootScope: ng.IScope ) {
+  }
+}
+
+export const AppComponent = {
+  selector: 'app',
   controller: AppController,
-  controllerAs: 'app',
   template: require('./app.html')
 };

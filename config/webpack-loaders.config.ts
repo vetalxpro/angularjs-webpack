@@ -3,7 +3,7 @@ import { mainConfig } from './main.config';
 
 import ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-export const loaders = (karma: boolean = false): Rule[] => {
+export const loaders = ( karma: boolean = false ): Rule[] => {
 
   const styleLoaders = [
     {
@@ -60,7 +60,7 @@ export const loaders = (karma: boolean = false): Rule[] => {
      },*/
     {
       test: /\.ts$/,
-      exclude: mainConfig.exclude,
+      include: mainConfig.srcDir,
       use: [
         { loader: 'awesome-typescript-loader' }
       ]
@@ -85,10 +85,11 @@ export const loaders = (karma: boolean = false): Rule[] => {
     {
       test: /\.json$/,
       loader: 'json-loader',
-      exclude: mainConfig.exclude,
+      include: mainConfig.srcDir
     },
     {
       test: /\.(jpg|png|gif|otf|cur|ani|ttf|eot|svg|woff|woff2)$/,
+      include: mainConfig.srcDir,
       loader: 'url-loader',
       options: {
         limit: 10000,
@@ -97,6 +98,7 @@ export const loaders = (karma: boolean = false): Rule[] => {
     },
     {
       test: /\.html$/,
+      include: mainConfig.srcDir,
       use: [
         {
           loader: 'html-loader',
@@ -104,8 +106,7 @@ export const loaders = (karma: boolean = false): Rule[] => {
             minimize: mainConfig.env === 'production'
           }
         }
-      ],
-      exclude: mainConfig.exclude
+      ]
     }
   ];
 

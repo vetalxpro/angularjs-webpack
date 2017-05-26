@@ -1,7 +1,7 @@
 import { remove } from 'fs-extra';
-import { mainConfig } from '../config/main.config';
+import { distDir } from '../config/main.config';
 
-remove(mainConfig.distDir, ( err ) => {
+remove(distDir, ( err ) => {
   if ( err ) {
     throw err;
   }

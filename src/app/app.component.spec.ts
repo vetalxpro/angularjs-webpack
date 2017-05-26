@@ -15,10 +15,4 @@ describe('AppComponent', () => {
   it('should be defined', () => {
     expect($ctrl).toBeDefined();
   });
-
-  it('should containt toolbar title', () => {
-    const title = 'AngularJS(webpack + typescript)';
-    expect($ctrl.toolbarTitle).toEqual(title);
-  });
-
 });

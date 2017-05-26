@@ -1,12 +1,13 @@
+//global styles without css-modules
 @import "~angular-material/angular-material.min";
 
 html {
-    height: 100%;
+  height: 100%;
 
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #cccccc;
+  margin: 0;
+  padding: 0;
+  background-color: #cccccc;
 }

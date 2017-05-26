@@ -1,9 +1,9 @@
 import { Rule } from 'webpack';
-import { mainConfig } from './main.config';
+import { env, srcDir, appDir, outputFilesName } from './main.config';
+import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-import ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-export const loaders = ( karma: boolean = false ): Rule[] => {
+export function loadersConfig( karma: boolean = false ): Rule[] {
 
   const styleLoaders = [
     {
@@ -33,7 +33,7 @@ export const loaders = ( karma: boolean = false ): Rule[] => {
       options: {
         sourceMap: true,
         includePaths: [
-          mainConfig.srcDir
+          srcDir
         ]
       }
     }
@@ -50,6 +50,15 @@ export const loaders = ( karma: boolean = false ): Rule[] => {
   };
 
   return [
+    {
+      test: /\.ts$/,
+      include: srcDir,
+      loaders: karma ? [
+        'istanbul-instrumenter-loader',
+        'awesome-typescript-loader'
+      ] : [ 'awesome-typescript-loader' ]
+
+    },
     /*{
      test: /\.ts$/,
      include: mainConfig.srcDir,
@@ -59,16 +68,8 @@ export const loaders = ( karma: boolean = false ): Rule[] => {
      ]
      },*/
     {
-      test: /\.ts$/,
-      include: mainConfig.srcDir,
-      use: [
-        { loader: 'awesome-typescript-loader' }
-      ]
-
-    },
-    {
       test: /\.(css|scss|sass)$/,
-      include: mainConfig.appDir,
+      include: appDir,
       use: karma ? styleModuleLoaders : ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: styleModuleLoaders
@@ -76,7 +77,7 @@ export const loaders = ( karma: boolean = false ): Rule[] => {
     },
     {
       test: /\.(css|scss|sass)$/,
-      exclude: mainConfig.appDir,
+      exclude: appDir,
       use: karma ? styleLoaders : ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: styleLoaders
@@ -85,29 +86,39 @@ export const loaders = ( karma: boolean = false ): Rule[] => {
     {
       test: /\.json$/,
       loader: 'json-loader',
-      include: mainConfig.srcDir
+      include: srcDir
     },
     {
       test: /\.(jpg|png|gif|otf|cur|ani|ttf|eot|svg|woff|woff2)$/,
-      include: mainConfig.srcDir,
+      include: srcDir,
       loader: 'url-loader',
       options: {
         limit: 10000,
-        name: `${mainConfig.serveFilesPath}/[name].[hash:8].[ext]`
+        name: outputFilesName
       }
     },
     {
       test: /\.html$/,
-      include: mainConfig.srcDir,
+      include: srcDir,
       use: [
         {
           loader: 'html-loader',
           options: {
-            minimize: mainConfig.env === 'production'
+            minimize: env === 'production'
+          }
+        }
+      ]
+    },
+    {
+      test: /\.pug$/,
+      use: [
+        {
+          loader: 'pug-loader',
+          options: {
+            pretty: env !== 'production'
           }
         }
       ]
     }
   ];
-
-};
+}

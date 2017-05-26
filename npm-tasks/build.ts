@@ -1,12 +1,11 @@
 import * as webpack from 'webpack';
 import { statsConfig } from '../config/webpack-stats.config';
-import { webpackProdConfig } from '../config/webpack.prod.config';
+import { webpackProductionConfig } from '../config/webpack-production.config';
 
-// module.exports = webpackProdConfig;
 function task() {
-  const compiler = webpack(webpackProdConfig);
+  const compiler = webpack(webpackProductionConfig());
 
-  compiler.watch({}, ( err, stats ) => {
+  compiler.run(( err, stats ) => {
     if ( err ) {
       return console.error(err);
     }

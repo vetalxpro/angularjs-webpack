@@ -10,6 +10,7 @@
     "whitespace": false,
     "prefer-const": true,
     "jsdoc-format": false,
+    "object-literal-shorthand": false,
     "member-access": [
       true,
       "check-accessor"

@@ -1,6 +1,5 @@
 class AppController {
   private static $inject = [ '$rootScope' ];
-  public toolbarTitle = 'AngularJS(webpack + typescript)';
 
   constructor( private $rootScope: ng.IScope ) {
   }

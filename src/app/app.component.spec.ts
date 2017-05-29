@@ -1,4 +1,5 @@
 import { mock } from 'angular';
+
 import { appModule } from './app.module';
 import { AppComponent } from './app.component';
 

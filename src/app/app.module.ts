@@ -1,12 +1,13 @@
-import * as angular from 'angular';
+import { module } from 'angular';
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { routesConfig, materialConfig } from './config';
 import { SimpleComponent, TopbarComponent } from './components';
 
-export const appModule = angular.module('appModule', [
+export const appModule = module('appModule', [
   'ui.router',
+  'ngAnimate',
   'ngMaterial'
 ]).component(AppComponent.selector, AppComponent)
   .component(TopbarComponent.selector, TopbarComponent)

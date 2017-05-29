@@ -1,4 +1,6 @@
-export function routesConfig( $locationProvider: ng.ILocationProvider ) {
+import { ILocationProvider } from 'angular';
+
+export function routesConfig( $locationProvider: ILocationProvider ) {
   $locationProvider.html5Mode({
     enabled: true,
     requireBase: false

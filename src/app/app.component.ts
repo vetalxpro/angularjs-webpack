@@ -1,7 +1,9 @@
+import { IScope } from 'angular';
+
 class AppController {
   private static $inject = [ '$rootScope' ];
 
-  constructor( private $rootScope: ng.IScope ) {
+  constructor( private $rootScope: IScope ) {
   }
 }
 

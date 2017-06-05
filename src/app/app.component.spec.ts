@@ -1,16 +1,16 @@
 import { mock } from 'angular';
 
-import { appModule } from './app.module';
-import { AppComponent } from './app.component';
+import { AppModule } from './app.module';
+import { appComponentSelector } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(mock.module(appModule.name));
+  beforeEach(mock.module(AppModule.name));
 
   let $ctrl;
 
   beforeEach(mock.inject(( $componentController, $rootScope ) => {
     const $scope = $rootScope.$new();
-    $ctrl = $componentController(AppComponent.selector, { $scope });
+    $ctrl = $componentController(appComponentSelector, { $scope });
   }));
 
   it('should be defined', () => {

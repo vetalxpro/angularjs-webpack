@@ -1,5 +1,5 @@
 import { Rule } from 'webpack';
-import { env, srcDir, appDir, outputFilesName } from './main.config';
+import { env, srcDir, outputFilesName } from './main.config';
 import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 
@@ -39,16 +39,6 @@ export function loadersConfig( karma: boolean = false ): Rule[] {
     }
   ];
 
-  const styleModuleLoaders = styleLoaders.slice();
-  styleModuleLoaders[ 0 ] = {
-    loader: 'css-loader',
-    options: {
-      modules: true,
-      importLoaders: 1,
-      localIdentName: '[local]__[hash:base64:5]'
-    }
-  };
-
   return [
     {
       test: /\.ts$/,
@@ -69,15 +59,6 @@ export function loadersConfig( karma: boolean = false ): Rule[] {
      },*/
     {
       test: /\.(css|scss|sass)$/,
-      include: appDir,
-      use: karma ? styleModuleLoaders : ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: styleModuleLoaders
-      })
-    },
-    {
-      test: /\.(css|scss|sass)$/,
-      exclude: appDir,
       use: karma ? styleLoaders : ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: styleLoaders
@@ -86,11 +67,9 @@ export function loadersConfig( karma: boolean = false ): Rule[] {
     {
       test: /\.json$/,
       loader: 'json-loader',
-      include: srcDir
     },
     {
       test: /\.(jpg|png|gif|otf|cur|ani|ttf|eot|svg|woff|woff2)$/,
-      include: srcDir,
       loader: 'url-loader',
       options: {
         limit: 10000,
@@ -99,7 +78,6 @@ export function loadersConfig( karma: boolean = false ): Rule[] {
     },
     {
       test: /\.html$/,
-      include: srcDir,
       use: [
         {
           loader: 'html-loader',

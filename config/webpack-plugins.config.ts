@@ -12,6 +12,7 @@ import {
 } from 'webpack';
 
 import { assetsDir, distDir, entryOrder, env, favicon, htmls, outputCssName } from './main.config';
+import { keys } from './keys.config';
 
 
 export function pluginsConfig( karma: boolean = false ): Plugin[] {
@@ -55,7 +56,8 @@ export function pluginsConfig( karma: boolean = false ): Plugin[] {
         const leftIndex = entryOrder.indexOf(left.names[ 0 ]);
         const rightIndex = entryOrder.indexOf(right.names[ 0 ]);
         return leftIndex - rightIndex;
-      }
+      },
+      google: keys.google
     }),
     new ExtractTextPlugin({
       filename: outputCssName,

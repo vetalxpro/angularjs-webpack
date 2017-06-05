@@ -1,12 +1,6 @@
-import { IStateProvider, IUrlRouterProvider } from 'angular-ui-router';
+import { IUrlRouterProvider } from 'angular-ui-router';
 
-import { AppComponent } from './app.component';
-
-export function appRoutes( $stateProvider: IStateProvider, $urlRouterProvider: IUrlRouterProvider ) {
-  $urlRouterProvider.otherwise('/');
-  $stateProvider.state('app', {
-    url: '/',
-    component: AppComponent.selector
-  });
+export function appRoutes( $urlRouterProvider: IUrlRouterProvider ) {
+  $urlRouterProvider.otherwise('/home');
 }
-appRoutes.$inject = [ '$stateProvider', '$urlRouterProvider' ];
+appRoutes.$inject = [ '$urlRouterProvider' ];

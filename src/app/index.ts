@@ -1,5 +1,5 @@
 import { bootstrap } from 'angular';
 
-import { appModule } from './app.module';
+import { AppModule } from './app.module';
 
-bootstrap(document.body, [ appModule.name ]);
+bootstrap(document, [ AppModule.name ]);

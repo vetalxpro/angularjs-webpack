@@ -1,15 +1,15 @@
 import { mock } from 'angular';
-import { appModule } from '../../app.module';
-import { TopbarComponent } from './topbar.component';
+import { AppModule } from '../../app.module';
+import { topBarComponentSelector } from './topbar.component';
 
 describe('TopbarComponent', () => {
-  beforeEach(mock.module(appModule.name));
+  beforeEach(mock.module(AppModule.name));
 
   let $ctrl;
 
   beforeEach(mock.inject(( $componentController, $rootScope ) => {
     const $scope = $rootScope.$new();
-    $ctrl = $componentController(TopbarComponent.selector, { $scope });
+    $ctrl = $componentController(topBarComponentSelector, { $scope });
   }));
 
   it('should be defined', () => {

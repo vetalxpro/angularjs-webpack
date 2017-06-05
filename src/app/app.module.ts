@@ -1,17 +1,19 @@
 import { module } from 'angular';
 
-import { AppComponent } from './app.component';
+import { AppComponent, appComponentSelector } from './app.component';
 import { appRoutes } from './app.routes';
 import { routesConfig, materialConfig } from './config';
-import { SimpleComponent, TopbarComponent } from './components';
+import { TopbarComponent } from './components';
+import { topBarComponentSelector } from './components';
+import { StatesModule } from './states/states.module';
 
-export const appModule = module('appModule', [
+export const AppModule = module('AppModule', [
   'ui.router',
   'ngAnimate',
-  'ngMaterial'
-]).component(AppComponent.selector, AppComponent)
-  .component(TopbarComponent.selector, TopbarComponent)
-  .component(SimpleComponent.selector, SimpleComponent)
-  .config(appRoutes)
+  'ngMaterial',
+  StatesModule.name
+]).component(appComponentSelector, AppComponent)
+  .component(topBarComponentSelector, TopbarComponent)
   .config(routesConfig)
+  .config(appRoutes)
   .config(materialConfig);

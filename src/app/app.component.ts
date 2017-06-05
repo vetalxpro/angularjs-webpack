@@ -1,4 +1,6 @@
-import { IScope } from 'angular';
+import { IComponentOptions, IScope } from 'angular';
+
+export const appComponentSelector = 'app';
 
 class AppController {
   private static $inject = [ '$rootScope' ];
@@ -7,8 +9,8 @@ class AppController {
   }
 }
 
-export const AppComponent = {
-  selector: 'app',
+
+export const AppComponent: IComponentOptions = {
   controller: AppController,
   template: require('./app.html')
 };

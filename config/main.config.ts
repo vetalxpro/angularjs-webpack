@@ -40,7 +40,7 @@ export const htmls = {
 
 /*
  ===============
- Entry Poinst
+ Entry Points
  ===============
  */
 export const entries = {

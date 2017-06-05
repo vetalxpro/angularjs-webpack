@@ -1,15 +1,16 @@
 import { mock } from 'angular';
-import { appModule } from '../../app.module';
-import { SimpleComponent } from './simple.component';
 
-describe('SimpleComponent', () => {
-  beforeEach(mock.module(appModule.name));
+import { HomeModule } from './home.module';
+import { homeComponentSelector } from './home.component';
+
+describe('HomeComponent', () => {
+  beforeEach(mock.module(HomeModule.name));
 
   let $ctrl;
 
   beforeEach(mock.inject(( $componentController, $rootScope ) => {
     const $scope = $rootScope.$new();
-    $ctrl = $componentController(SimpleComponent.selector, { $scope });
+    $ctrl = $componentController(homeComponentSelector, { $scope });
   }));
 
   it('should be defined', () => {
@@ -17,7 +18,7 @@ describe('SimpleComponent', () => {
   });
 
   it('should containt title', () => {
-    const title = 'Simple Component Works!';
+    const title = 'Home Component Works!';
     expect($ctrl.title).toEqual(title);
   });
 

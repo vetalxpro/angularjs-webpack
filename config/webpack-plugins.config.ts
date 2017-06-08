@@ -11,7 +11,7 @@ import {
   SourceMapDevToolPlugin
 } from 'webpack';
 
-import { assetsDir, distDir, entryOrder, env, favicon, htmls, outputCssName } from './main.config';
+import { assetsDir, distDir, entryOrder, env, favicon, htmls, outputCssName, excludePaths } from './main.config';
 import { keys } from './keys.config';
 
 
@@ -47,7 +47,9 @@ export function pluginsConfig( karma: boolean = false ): Plugin[] {
         from: favicon,
         to: distDir
       }
-    ]),
+    ], {
+      ignore: [ '.gitkeep' ]
+    }),
     new HtmlWebpackPlugin({
       template: htmls.index,
       title: 'AngularJS',
@@ -70,7 +72,7 @@ export function pluginsConfig( karma: boolean = false ): Plugin[] {
     new SourceMapDevToolPlugin({
       filename: null, // if no value is provided the sourcemap is inlined
       test: /\.(ts|js)$/i, // process .js and .ts files only
-      exclude: [ /node_modules/ ]
+      exclude: excludePaths
     }),
     ...corePlugins
   ];

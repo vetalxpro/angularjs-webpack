@@ -7,7 +7,7 @@ import { TopbarComponent } from './components';
 import { topBarComponentSelector } from './components';
 import { StatesModule } from './states/states.module';
 
-export const AppModule = module('AppModule', [
+export const AppModule = module('app', [
   'ui.router',
   'ngAnimate',
   'ngMaterial',

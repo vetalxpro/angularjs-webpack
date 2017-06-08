@@ -3,7 +3,7 @@ import { IComponentOptions } from 'angular';
 export const topBarComponentSelector = 'topBar';
 
 class TopbarController {
-  public title = 'AngularJS + Typescript + Webpack';
+  public title = 'Angularjs + Typescript + Webpack';
 }
 
 

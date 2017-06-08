@@ -14,7 +14,7 @@ export const env = process.env.NODE_ENV || 'development';
  */
 export const staticDirName = 'assets';
 export const outputJsName = `${staticDirName}/js/[name].bundle.js`;
-export const outputCssName = `${staticDirName}/css/styles.css`;
+export const outputCssName = `${staticDirName}/css/styles.bundle.css`;
 export const outputFilesName = `${staticDirName}/[name].[hash:8].[ext]`;
 export const assetsPathPattern = '[name].[ext]';
 
@@ -55,7 +55,7 @@ export const entries = {
  */
 export const publicPath = '/';
 export const entryOrder = [ 'polyfills', 'vendor', 'main' ];
-export const exclude = [ /node_modules/, /\.spec\.ts$/ ];
+export const excludePaths = [ /node_modules/ ];
 export const resolveExtensions = [ '.ts', '.tsx', '.js', '.json' ];
 
 

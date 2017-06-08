@@ -1,7 +1,12 @@
 home {
   display: flex;
   flex-direction: column;
-  p {
+  align-items: center;
+  h2 {
     color: #0074d9;
+  }
+  .angular-icon {
+    width: 512px;
+    height: 140px;
   }
 }

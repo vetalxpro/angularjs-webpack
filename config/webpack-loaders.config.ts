@@ -7,7 +7,10 @@ export function loadersConfig( karma: boolean = false ): Rule[] {
 
   const styleLoaders = [
     {
-      loader: 'css-loader'
+      loader: 'css-loader',
+      options: {
+        minimize: env === 'production'
+      }
     },
     {
       loader: 'postcss-loader',
@@ -66,7 +69,7 @@ export function loadersConfig( karma: boolean = false ): Rule[] {
     },
     {
       test: /\.json$/,
-      loader: 'json-loader',
+      loader: 'json-loader'
     },
     {
       test: /\.(jpg|png|gif|otf|cur|ani|ttf|eot|svg|woff|woff2)$/,

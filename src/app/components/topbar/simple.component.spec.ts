@@ -17,7 +17,7 @@ describe('TopbarComponent', () => {
   });
 
   it('should containt title', () => {
-    const title = 'AngularJS + Typescript + Webpack';
+    const title = 'Angularjs + Typescript + Webpack';
     expect($ctrl.title).toEqual(title);
   });
 

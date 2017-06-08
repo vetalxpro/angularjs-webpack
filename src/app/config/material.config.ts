@@ -1,11 +1,15 @@
 import { material } from 'angular';
 
-export function materialConfig( $mdThemingProvider: material.IThemingProvider ) {
-  $mdThemingProvider.theme('default')
+export function materialConfig( $mdThemingProvider: material.IThemingProvider, $mdIconProvider: material.IIconProvider ) {
+  $mdThemingProvider
+    .theme('default')
     .primaryPalette('blue')
     .accentPalette('red');
+
+  $mdIconProvider
+    .icon('angularjs', require('../assets/svg/angularjs.svg'), 512);
 }
 
-materialConfig.$inject = [ '$mdThemingProvider' ];
+materialConfig.$inject = [ '$mdThemingProvider', '$mdIconProvider' ];
 
 

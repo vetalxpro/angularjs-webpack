@@ -1,6 +1,6 @@
 import { Configuration, HotModuleReplacementPlugin, SourceMapDevToolPlugin } from 'webpack';
 import { webpackConfig } from './webpack-common.config';
-import { serverPort } from './main.config';
+import { serverPort, excludePaths } from './main.config';
 
 export function webpackDevServerConfig(): Configuration {
   const devServerConfig = webpackConfig();
@@ -10,7 +10,7 @@ export function webpackDevServerConfig(): Configuration {
     new SourceMapDevToolPlugin({
       filename: null, // if no value is provided the sourcemap is inlined
       test: /\.(ts|js)$/i, // process .js and .ts files only
-      exclude: [ /node_modules/ ]
+      exclude: excludePaths
     })
   );
 

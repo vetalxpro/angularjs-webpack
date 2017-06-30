@@ -1,6 +1,8 @@
 import { mock } from 'angular';
+
 import { AppModule } from '../../app.module';
 import { topBarComponentSelector } from './topbar.component';
+
 
 describe('TopbarComponent', () => {
   beforeEach(mock.module(AppModule.name));

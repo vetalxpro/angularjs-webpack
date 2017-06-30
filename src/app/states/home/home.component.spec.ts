@@ -3,6 +3,7 @@ import { mock } from 'angular';
 import { HomeModule } from './home.module';
 import { homeComponentSelector } from './home.component';
 
+
 describe('HomeComponent', () => {
   beforeEach(mock.module(HomeModule.name));
 

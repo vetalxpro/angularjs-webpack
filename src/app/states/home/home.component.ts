@@ -1,5 +1,7 @@
 import { IComponentOptions } from 'angular';
+
 import './home.scss';
+
 
 export const homeComponentSelector = 'home';
 
@@ -10,6 +12,7 @@ class HomeController {
 
   }
 }
+
 export const HomeComponent: IComponentOptions = {
   controller: HomeController,
   template: require('./home.html')

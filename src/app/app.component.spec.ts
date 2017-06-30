@@ -3,6 +3,7 @@ import { mock } from 'angular';
 import { AppModule } from './app.module';
 import { appComponentSelector } from './app.component';
 
+
 describe('AppComponent', () => {
   beforeEach(mock.module(AppModule.name));
 

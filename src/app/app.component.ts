@@ -1,5 +1,7 @@
 import { IComponentOptions, IScope } from 'angular';
+
 import './app.scss';
+
 
 export const appComponentSelector = 'app';
 

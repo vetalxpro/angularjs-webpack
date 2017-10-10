@@ -2,9 +2,6 @@ import { IComponentOptions } from 'angular';
 
 import './home.scss';
 
-
-export const homeComponentSelector = 'home';
-
 class HomeController {
   public title = 'Home Component Works!';
 

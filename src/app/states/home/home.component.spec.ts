@@ -1,17 +1,15 @@
 import { mock } from 'angular';
 
 import { HomeModule } from './home.module';
-import { homeComponentSelector } from './home.component';
-
 
 describe('HomeComponent', () => {
-  beforeEach(mock.module(HomeModule.name));
+  beforeEach(mock.module('ui.router', HomeModule.name));
 
   let $ctrl;
 
   beforeEach(mock.inject(( $componentController, $rootScope ) => {
     const $scope = $rootScope.$new();
-    $ctrl = $componentController(homeComponentSelector, { $scope });
+    $ctrl = $componentController('home', { $scope });
   }));
 
   it('should be defined', () => {
